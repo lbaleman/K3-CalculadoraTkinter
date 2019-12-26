@@ -1,4 +1,7 @@
 class RomanNumber():
+    value = 0
+    __romanValue = ''
+
     __valores= {'M': 1000, 'D': 500, 'C': 100, 'L': 50, 'X':10, 'V':5, 'I':1}
     __posiciones= {'I':1, 'V':2, 'X': 3, 'L':4, 'C':5, 'D': 6, 'M':7}
 
@@ -187,7 +190,48 @@ class RomanNumber():
         return numArabigo
 
     def __str__(self):
-        return self.__romanValue
+        return "{}".format(self.__romanValue)
+
+    def __int__(self):
+        return self.value
 
     def __repr__(self):
         return self.__romanValue
+
+    def __add__(self, value):
+        resultado = self.value + int(value)
+        resultado = RomanNumber(resultado)
+        return resultado
+
+    def __radd_(self, value):
+        return self.__add__(value)
+
+    def __sub__(self, value):
+        resultado = max(0, self.value - int(value))
+        resultado = RomanNumber(resultado)
+        return resultado
+
+    def __rsub__(self, value):
+        return self.__sub__(value)
+
+    def __mul__(self,value):
+        resultado = self.value*int(value)
+        resultado = RomanNumber(resultado)
+        return resultado
+
+    def __rmul__(self, value):
+        return self.__mul__(value)
+    
+    def __truediv__(self, value):
+        resultado = self.value // int(value)
+        resultado = RomanNumber(resultado)
+        return resultado
+
+    def __div__(self, value):
+        return self.__truediv__(value)
+
+    def __rvid__(self, value):
+        return self.__div__(value)
+
+    
+
